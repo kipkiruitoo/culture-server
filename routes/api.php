@@ -25,9 +25,13 @@ Route::post('/login', [UserController::class, 'login']);
 Route::post('/register', [UserController::class, 'register']);
 Route::get('/logout', [UserController::class, 'logout'])->middleware('auth:sanctum');
 
-Route::get('/art', [ArtController::class, 'index']);
+Route::get('/art', [ArtController::class, 'index'])->middleware('auth:sanctum');
+
+// art of logged in user
+
+Route::get('/user/art', [UserController::class, 'art'])->middleware('auth:sanctum');
 
 
-Route::get('/art/{id}', [ArtController::class, 'show']);
+Route::get('/art/{id}', [ArtController::class, 'show'])->middleware('auth:sanctum');
 
-Route::post('/art', [ArtController::class, 'store']);
+Route::post('/art', [ArtController::class, 'store'])->middleware('auth:sanctum');

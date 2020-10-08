@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Validator;
 use App\Models\User;
+use App\Http\Resources\SingleArt;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -64,6 +65,14 @@ class UserController extends Controller
             'token' => $success,
             'user' => $user
         ]);
+    }
+
+    public function art()
+    {
+        $user = Auth::user();
+
+        $art = $user->art;
+        return response()->json(["message" => "Art Retrieved Successfully", 'success' => true, "data" =>  SingleArt::collection($art)]);
     }
 
     public function logout(Request $request)

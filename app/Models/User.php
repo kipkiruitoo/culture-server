@@ -58,4 +58,9 @@ class User extends \TCG\Voyager\Models\User
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function art()
+    {
+        return $this->hasMany(Art::class, 'user_id');
+    }
 }
