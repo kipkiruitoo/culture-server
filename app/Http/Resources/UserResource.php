@@ -24,7 +24,7 @@ class UserResource extends JsonResource
             'follower_count' => $this->follower_count,
             'following_count' => $this->following_count,
             'profile_photo_path:' => $this->profile_photo_path,
-            'profile_photo_url' => URL::to($this->profile_photo_path)
+            'profile_photo_url' => env('APP_URL') . '/storage/' . $this->profile_photo_path
         ];
     }
 }

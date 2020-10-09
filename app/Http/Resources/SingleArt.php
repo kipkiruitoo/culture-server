@@ -2,7 +2,10 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Art;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Auth;
+use Carbon\Carbon;
 
 class SingleArt extends JsonResource
 {
@@ -14,6 +17,22 @@ class SingleArt extends JsonResource
      */
     public function toArray($request)
     {
+
+        $user = Auth::user();
+
+        $hasLiked = $user->hasLiked(Art::find($this->id));
+
+        $hasFavourited =
+            $user->hasFavorited(Art::find($this->id));
+
+        $latestLikers = Art::find($this->id)->latest_likers;
+
+        // if (is_null($latestLikers)) {
+        //     # code...
+        //     $latestLikers = [];
+        // }
+
+        // dd($latestLikers);
         // return parent::toArray($request);
         return [
             'id' => $this->id,
@@ -24,7 +43,11 @@ class SingleArt extends JsonResource
             'image' => $this->image,
             'category' => new CategoryResource($this->category),
             'subcategory' => new SubCategoryResource($this->subcategory),
-            'artist' => new UserResource($this->artist)
+            'artist' => new UserResource($this->artist),
+            'hasLiked' => $hasLiked,
+            'hasFavourited' => $hasFavourited,
+            'latestLikers' => UserResource::collection($latestLikers),
+            'post_date' => Carbon::parse($this->created_at)->format('F d Y')
             // 'id' => $this->id,
         ];
     }

@@ -31,6 +31,11 @@ class Art extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
+    public function getLatestLikersAttribute()
+    {
+        return $this->likers;
+    }
+
 
     public function getLikeCountAttribute()
     {
