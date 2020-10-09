@@ -4,12 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Overtrue\LaravelFavorite\Traits\Favoriteable;
 use Overtrue\LaravelLike\Traits\Likeable;
 
 class Art extends Model
 {
     use HasFactory;
-
+    use Favoriteable;
     use Likeable;
 
     protected $fillable = ['title', 'description', 'location', 'image', 'user_id', 'category_id', 'sub_category_id'];

@@ -127,4 +127,31 @@ class ArtController extends Controller
 
         return response()->json(["message" => "Art UnLiked Successfully", 'success' => true, "data" => new SingleArt($art)]);
     }
+
+    public function favourite(Art $art)
+    {
+        $user = Auth::user();
+        $user->favorite($art);
+
+        return response()->json(["message" => "Art Favourited Successfully", 'success' => true, "data" => new SingleArt($art)]);
+    }
+
+    public function unfavourite(Art $art)
+    {
+        $user = Auth::user();
+        $user->unfavorite($art);
+
+        return response()->json(["message" => "Art UnFavourited Successfully", 'success' => true, "data" => new SingleArt($art)]);
+    }
+
+    public function favouriteItems()
+    {
+        $user = Auth::user();
+
+        $art = $user->getFavoriteItems(Art::class);
+
+        dd($art);
+
+        return response()->json(["message" => "Favourited Items retrieved Successfully", 'success' => true, "data" =>  SingleArt::collection($art)]);
+    }
 }

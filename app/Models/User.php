@@ -11,6 +11,7 @@ use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use Overtrue\LaravelFollow\Followable;
 use Overtrue\LaravelLike\Traits\Liker;
+use Overtrue\LaravelFavorite\Traits\Favoriter;
 
 class User extends \TCG\Voyager\Models\User
 {
@@ -20,6 +21,7 @@ class User extends \TCG\Voyager\Models\User
     use Notifiable;
     use Followable;
     use Liker;
+    use Favoriter;
     use TwoFactorAuthenticatable;
 
     /**

@@ -51,5 +51,17 @@ Route::post('/user/unfollow', [UserController::class, 'unfollow'])->middleware('
 
 // art routes
 
-Route::get('art/{art}/like', [ArtController::class, 'like'])->middleware('auth:sanctum');
-Route::get('art/{art}/unlike', [ArtController::class, 'unlike'])->middleware('auth:sanctum');
+Route::get('/art/{art}/like', [ArtController::class, 'like'])->middleware('auth:sanctum');
+Route::get('/art/{art}/unlike', [ArtController::class, 'unlike'])->middleware('auth:sanctum');
+
+
+// favourite routes
+
+Route::get('/art/{art}/favourite', [ArtController::class, 'favourite'])->middleware('auth:sanctum');
+
+Route::get('/art/{art}/unfavourite', [ArtController::class, 'unfavourite'])->middleware('auth:sanctum');
+
+Route::get(
+    '/art/favourite/user',
+    [ArtController::class, 'favouriteItems']
+)->middleware('auth:sanctum');
