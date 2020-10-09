@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\User;
 use App\Http\Resources\SingleArt;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\UserResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -91,5 +92,51 @@ class UserController extends Controller
                 'message' => 'Unable to Logout'
             ]);
         }
+    }
+
+    public function follow(Request $request)
+    {
+
+        $user1 = $request->user();
+
+        $user2 = User::find($request->user2);
+
+        if ($user1->follow($user2)) {
+            return response()->json(["message" => "Successfully Followed " . $user2->name, 'success' => true]);
+        } else {
+            return response()->json(["message" => "An error occured while trying to follow " . $user2->name, 'success' => true]);
+        }
+    }
+
+    public function unfollow(Request $request)
+    {
+        $user1 = $request->user();
+
+        $user2 = User::find($request->user2);
+
+        if ($user1->unfollow($user2)) {
+            return response()->json(["message" => "Successfully Followed " . $user2->name, 'success' => true]);
+        } else {
+            return response()->json(["message" => "An error occured while trying to follow " . $user2->name, 'success' => true]);
+        }
+    }
+
+    public function getFollowers(User $user)
+    {
+        // $user = $request->user();
+
+        $followers = $user->followers;
+
+        return response()->json(["message" => "Followers Retrieved Successfully", 'success' => true, "data" =>  UserResource::collection($followers)]);
+    }
+
+    public function getFollowings($user)
+    {
+        $user = User::find($user);
+        // dd($user);
+
+        $followings = $user->followings;
+
+        return response()->json(["message" => "Followings Retrieved Successfully", 'success' => true, "data" =>  UserResource::collection($followings)]);
     }
 }

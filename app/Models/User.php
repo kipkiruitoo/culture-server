@@ -9,6 +9,8 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use Overtrue\LaravelFollow\Followable;
+use Overtrue\LaravelLike\Traits\Liker;
 
 class User extends \TCG\Voyager\Models\User
 {
@@ -16,6 +18,8 @@ class User extends \TCG\Voyager\Models\User
     use HasFactory;
     use HasProfilePhoto;
     use Notifiable;
+    use Followable;
+    use Liker;
     use TwoFactorAuthenticatable;
 
     /**
@@ -62,5 +66,15 @@ class User extends \TCG\Voyager\Models\User
     public function art()
     {
         return $this->hasMany(Art::class, 'user_id');
+    }
+
+    public function getFollowerCountAttribute()
+    {
+        return $this->followers()->count();
+    }
+
+    public function getFollowingCountAttribute()
+    {
+        return $this->followings()->count();
     }
 }

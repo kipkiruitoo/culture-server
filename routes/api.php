@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\ArtController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Resources\UserResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+    return new UserResource($request->user());
 });
 
 // Auth Routes
@@ -35,3 +36,20 @@ Route::get('/user/art', [UserController::class, 'art'])->middleware('auth:sanctu
 Route::get('/art/{id}', [ArtController::class, 'show'])->middleware('auth:sanctum');
 
 Route::post('/art', [ArtController::class, 'store'])->middleware('auth:sanctum');
+
+
+// user routes
+Route::get('/user/{id}/followers', [UserController::class, 'getFollowers'])->middleware('auth:sanctum');
+Route::get('/user/{id}/followings', [UserController::class, 'getFollowings'])->middleware('auth:sanctum');
+
+
+
+Route::post('/user/follow', [UserController::class, 'follow'])->middleware('auth:sanctum');
+Route::post('/user/unfollow', [UserController::class, 'unfollow'])->middleware('auth:sanctum');
+
+
+
+// art routes
+
+Route::get('art/{art}/like', [ArtController::class, 'like'])->middleware('auth:sanctum');
+Route::get('art/{art}/unlike', [ArtController::class, 'unlike'])->middleware('auth:sanctum');

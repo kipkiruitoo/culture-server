@@ -8,6 +8,7 @@ use App\Http\Resources\Art as ArtResource;
 use App\Http\Resources\SingleArt;
 use Illuminate\Http\Request;
 use App\Models\Art;
+use Auth;
 
 class ArtController extends Controller
 {
@@ -105,5 +106,25 @@ class ArtController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    public function like(Art $art)
+    {
+        $user = Auth::user();
+
+        $user->like($art);
+        return response()->json(["message" => "Art Liked Successfully", 'success' => true, "data" => new SingleArt($art)]);
+    }
+
+
+    public function unlike(Art $art)
+    {
+        $user = Auth::user();
+
+        $user->unlike($art);
+
+
+        return response()->json(["message" => "Art UnLiked Successfully", 'success' => true, "data" => new SingleArt($art)]);
     }
 }

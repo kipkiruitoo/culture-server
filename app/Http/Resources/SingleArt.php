@@ -20,6 +20,7 @@ class SingleArt extends JsonResource
             'title' => $this->title,
             'description' => $this->description,
             'location' => $this->location,
+            'like_count' => $this->like_count,
             'image' => $this->image,
             'category' => new CategoryResource($this->category),
             'subcategory' => new SubCategoryResource($this->subcategory),
