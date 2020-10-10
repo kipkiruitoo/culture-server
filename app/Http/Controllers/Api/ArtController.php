@@ -19,11 +19,11 @@ class ArtController extends Controller
      */
     public function index()
     {
-        $art = Art::paginate();
+        $art = Art::latest();
 
         // dd
         // return new SingleArt::collection($art);
-        return response()->json(["message" => "Art Saved Successfully", 'success' => true, "data" =>  $art]);
+        return response()->json(["message" => "Art Saved Successfully", 'success' => true, "data" =>  SingleArt::collection($art)]);
     }
 
     /**
