@@ -56,6 +56,8 @@ class ArtController extends Controller
         $art->description = $request->description;
         $art->location = $request->location;
         $art->image = $path;
+        $art->user_id = $request->user()->id;
+        $art->category_id = 1;
 
 
 
