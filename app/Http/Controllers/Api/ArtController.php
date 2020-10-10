@@ -50,7 +50,7 @@ class ArtController extends Controller
         // handle file uploads
         $img = $request->file('image');
 
-        $path = $img->store('art');
+        $path = $img->store('public/art');
 
         $art->title = $request->title;
         $art->description = $request->description;
