@@ -19,7 +19,7 @@ class ArtController extends Controller
      */
     public function index()
     {
-        $art = Art::latest();
+        $art = Art::all()->latest();
 
         // dd
         // return new SingleArt::collection($art);
