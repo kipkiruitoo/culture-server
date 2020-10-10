@@ -27,7 +27,9 @@ class StoreArt extends FormRequest
         return [
 
             'title' => 'required',
-            'description' => 'required'
+            'description' => 'required',
+            'location' => 'required',
+            // 'file' => 'required',
 
         ];
     }

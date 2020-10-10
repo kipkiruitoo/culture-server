@@ -45,7 +45,20 @@ class ArtController extends Controller
     {
 
 
-        $art = new Art($request->validated());
+        $art = new Art();
+
+        // handle file uploads
+        $img = $request->file('image');
+
+        $path = $img->store('art');
+
+        $art->title = $request->title;
+        $art->description = $request->description;
+        $art->location = $request->location;
+        $art->image = $path;
+
+
+
 
         // dd($request->all());
         // dd($art);
