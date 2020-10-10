@@ -19,7 +19,7 @@ class ArtController extends Controller
      */
     public function index()
     {
-        $art = Art::jsonPaginate();
+        $art = Art::all();
 
         // dd
         // return new SingleArt::collection($art);
