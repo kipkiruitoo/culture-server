@@ -6,12 +6,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Overtrue\LaravelFavorite\Traits\Favoriteable;
 use Overtrue\LaravelLike\Traits\Likeable;
+use Actuallymab\LaravelComment\Contracts\Commentable;
+use Actuallymab\LaravelComment\HasComments;
 
-class Art extends Model
+class Art extends Model implements Commentable
 {
     use HasFactory;
     use Favoriteable;
     use Likeable;
+    use HasComments;
 
     protected $fillable = ['title', 'description', 'location', 'image', 'user_id', 'category_id', 'sub_category_id'];
 

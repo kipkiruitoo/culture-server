@@ -12,6 +12,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Overtrue\LaravelFollow\Followable;
 use Overtrue\LaravelLike\Traits\Liker;
 use Overtrue\LaravelFavorite\Traits\Favoriter;
+use Actuallymab\LaravelComment\CanComment;
 
 class User extends \TCG\Voyager\Models\User
 {
@@ -22,6 +23,7 @@ class User extends \TCG\Voyager\Models\User
     use Followable;
     use Liker;
     use Favoriter;
+    use CanComment
     use TwoFactorAuthenticatable;
 
     /**

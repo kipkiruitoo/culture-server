@@ -174,6 +174,11 @@ class ArtController extends Controller
     {
         $comment = $request->comment;
         $art = Art::find($request->art);
-        $user = $request()->user();
+        $user = $request->user();
+
+        $user->comment($art, $comment);
+
+        return
+            response()->json(["message" => "Comment  Saved Successfully", 'success' => true, "data" =>  SingleArt::collection($art)]);
     }
 }
