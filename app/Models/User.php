@@ -23,7 +23,7 @@ class User extends \TCG\Voyager\Models\User
     use Followable;
     use Liker;
     use Favoriter;
-    use CanComment
+    use CanComment;
     use TwoFactorAuthenticatable;
 
     /**
