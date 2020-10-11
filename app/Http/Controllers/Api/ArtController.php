@@ -169,4 +169,11 @@ class ArtController extends Controller
 
         return response()->json(["message" => "Favourited Items retrieved Successfully", 'success' => true, "data" =>  SingleArt::collection($art)]);
     }
+
+    public function comment(Request $request)
+    {
+        $comment = $request->comment;
+        $art = Art::find($request->art);
+        $user = $request()->user();
+    }
 }

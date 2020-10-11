@@ -61,6 +61,8 @@ Route::get('/art/{art}/favourite', [ArtController::class, 'favourite'])->middlew
 
 Route::get('/art/{art}/unfavourite', [ArtController::class, 'unfavourite'])->middleware('auth:sanctum');
 
+Route::post('/art/comment', [ArtController::class, 'comment'])->middleware('auth:sanctum');
+
 Route::get(
     '/art/favourite/user',
     [ArtController::class, 'favouriteItems']
