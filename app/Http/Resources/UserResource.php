@@ -2,8 +2,10 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Art;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\URL;
+use App\Models\User;
 
 class UserResource extends JsonResource
 {
@@ -15,6 +17,9 @@ class UserResource extends JsonResource
      */
     public function toArray($request)
     {
+
+        // $user = User::find($this->id);
+        $postcount = Art::where('user_id', $this->id)->count();
         if (is_null($this->profile_photo_path)) {
 
 
@@ -33,7 +38,8 @@ class UserResource extends JsonResource
             'follower_count' => $this->follower_count,
             'following_count' => $this->following_count,
             'profile_photo_path:' => $this->profile_photo_path,
-            'profile_photo_url' => $profile_url
+            'profile_photo_url' => $profile_url,
+            'post_count' => $postcount
         ];
     }
 }
