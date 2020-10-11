@@ -17,12 +17,9 @@ class UserResource extends JsonResource
     {
         if (is_null($this->profile_photo_path)) {
 
-            $splittedname = explode(' ', $this->name);
-            $name = $splittedname . join("+");
 
-            $name = str_replace(" ", "", $name);
 
-            $profile_url = "https://ui-avatars.com/api/?name=" . $name . "&color=7F9CF5&background=EBF4FF";
+            $profile_url = "https://ui-avatars.com/api/?name=" . urlencode($this->name) . "&color=7F9CF5&background=EBF4FF";
         } else {
             $profile_url =
                 env('APP_URL') . '/storage/' . $this->profile_photo_path;
