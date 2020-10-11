@@ -19,7 +19,7 @@ class ArtController extends Controller
      */
     public function index()
     {
-        $art = Art::where('id', '>', 0)->get()->latest();
+        $art = Art::where('id', '>', 0)->latest()->get();
 
         // dd
         // return new SingleArt::collection($art);
