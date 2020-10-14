@@ -181,4 +181,11 @@ class ArtController extends Controller
         return
             response()->json(["message" => "Comment  Saved Successfully", 'success' => true, "data" =>  SingleArt::collection($art)]);
     }
+
+    public function comments(Art $art)
+    {
+        $comments = $art->comments;
+        return
+            response()->json(["message" => "Comment  Saved Successfully", 'success' => true, "data" =>  $comments->toArray()]);
+    }
 }
