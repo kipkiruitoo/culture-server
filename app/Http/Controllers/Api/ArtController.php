@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreArt;
 use App\Http\Resources\Art as ArtResource;
+use App\Http\Resources\CommentResource;
 use App\Http\Resources\SingleArt;
 use Illuminate\Http\Request;
 use App\Models\Art;
@@ -186,6 +187,6 @@ class ArtController extends Controller
     {
         $comments = $art->comments;
         return
-            response()->json(["message" => "Comment  Saved Successfully", 'success' => true, "data" =>  $comments->toArray()]);
+            response()->json(["message" => "Comment  Saved Successfully", 'success' => true, "data" =>  CommentResource::collection($comments)]);
     }
 }
