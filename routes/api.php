@@ -65,7 +65,7 @@ Route::post('/art/comment', [ArtController::class, 'comment'])->middleware('auth
 
 Route::get('/art/{art}/comments', [ArtController::class, 'comments'])->middleware('auth:sanctum');
 
-Route::get('/art/subcategories', [ArtController::class, 'subcategories'])->middleware('auth:sanctum');
+Route::get('/subcategories', [ArtController::class, 'subcategories'])->middleware('auth:sanctum');
 
 
 Route::get(
