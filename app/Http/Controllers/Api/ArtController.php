@@ -10,6 +10,7 @@ use App\Http\Resources\SingleArt;
 use App\Http\Resources\SubCategoryResource;
 use Illuminate\Http\Request;
 use App\Models\Art;
+use App\Models\Category;
 use App\Models\SubCategory;
 use Auth;
 
@@ -192,9 +193,9 @@ class ArtController extends Controller
             response()->json(["message" => "Comment  Saved Successfully", 'success' => true, "data" =>  CommentResource::collection($comments)]);
     }
 
-    public function subcategories()
+    public function subcategories($category)
     {
-        $subs = SubCategory::all();
+        $subs = SubCategory::where('category_id', $category)->get();
 
         return response()->json(["message" => "Sub Categories Retrieved Successfully", "success" => true, "data" => SubCategoryResource::collection($subs)]);
     }
