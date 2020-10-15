@@ -30,7 +30,11 @@ class ArtController extends Controller
         if ($cat == 0) {
             $art = Art::where('id', '>', 0)->latest()->paginate(10);
         } else {
-            $art = Art::where('category_id', $cat)->latest()->paginate(10);
+            if ($subcat == 0) {
+                $art = Art::where('category_id', $cat)->latest()->paginate(10);
+            } else {
+                $art = Art::where('sub_category_id', $subcat)->latest()->paginate(10);
+            }
         }
 
 
