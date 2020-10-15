@@ -27,17 +27,17 @@ class ArtController extends Controller
         $cat = $request->query('category');
         $subcat
             = $request->query('subcategory');
-        if ($cat == 0 && $subcat == 0) {
+        if ($cat == 0) {
             $art = Art::where('id', '>', 0)->latest()->paginate(10);
         } else {
-            $art = Art::where('category_id', $cat)->where('sub_category_id', $subcat)->latest()->paginate(10);
+            $art = Art::where('category_id', $cat)->latest()->paginate(10);
         }
 
 
 
         // dd
         // return new SingleArt::collection($art);
-        return response()->json(["message" => "Art Saved Successfully", 'success' => true, "data" =>  SingleArt::collection($art)]);
+        return response()->json(["message" => "Art Retrieved Successfully", 'success' => true, "data" =>  SingleArt::collection($art)]);
     }
 
     /**
