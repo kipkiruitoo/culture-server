@@ -21,9 +21,19 @@ class ArtController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $art = Art::where('id', '>', 0)->latest()->paginate(10);
+
+        $cat = $request->query('category');
+        $subcat
+            = $request->query('subcategory');
+        if ($cat == 0 && $subcat == 0) {
+            $art = Art::where('id', '>', 0)->latest()->paginate(10);
+        } else {
+            $art = Art::where('category_id', $cat)->where('sub_category_id', $subcat)->latest()->paginate(10);
+        }
+
+
 
         // dd
         // return new SingleArt::collection($art);
