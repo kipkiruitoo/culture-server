@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use App\Models\Art;
 use App\Models\Category;
 use App\Models\SubCategory;
+use App\Models\User;
 use Auth;
 
 class ArtController extends Controller
@@ -41,6 +42,17 @@ class ArtController extends Controller
 
         // dd
         // return new SingleArt::collection($art);
+        return response()->json(["message" => "Art Retrieved Successfully", 'success' => true, "data" =>  SingleArt::collection($art)]);
+    }
+
+    public function search(Request $request)
+    {
+    }
+
+    public function userart(User $user)
+    {
+        $art = $user->art;
+
         return response()->json(["message" => "Art Retrieved Successfully", 'success' => true, "data" =>  SingleArt::collection($art)]);
     }
 
