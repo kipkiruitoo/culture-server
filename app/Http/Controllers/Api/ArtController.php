@@ -49,9 +49,9 @@ class ArtController extends Controller
     {
     }
 
-    public function userart(User $user)
+    public function userart($user)
     {
-        $art = $user->art;
+        $art = User::find($user)->art;
 
         return response()->json(["message" => "Art Retrieved Successfully", 'success' => true, "data" =>  SingleArt::collection($art)]);
     }
