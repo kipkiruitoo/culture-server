@@ -6,6 +6,7 @@ use App\Models\Art;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\URL;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class UserResource extends JsonResource
 {
@@ -18,7 +19,7 @@ class UserResource extends JsonResource
     public function toArray($request)
     {
 
-        // $user = User::find($this->id);
+        $user = User::find($this->id);
         $postcount = Art::where('user_id', $this->id)->count();
         if (is_null($this->profile_photo_path)) {
 
@@ -29,12 +30,23 @@ class UserResource extends JsonResource
             $profile_url =
                 env('APP_URL') . '/storage/' . $this->profile_photo_path;
         }
+
+
+        // check if i am following this user
+        $following =
+            Auth::user()->isFollowing($user);
+
+        // check if followed by this user
+        $followed = Auth::user()->isFollowdBy($user);
+
         return [
             'id' => $this->id,
             'name' => $this->name,
             'bio' => $this->bio,
             'email' => $this->id,
             'avatar' => $this->avatar,
+            'following' => $following,
+            'followed' => $followed,
             'follower_count' => $this->follower_count,
             'following_count' => $this->following_count,
             'profile_photo_path:' => $this->profile_photo_path,

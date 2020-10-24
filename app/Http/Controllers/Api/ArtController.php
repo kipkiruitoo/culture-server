@@ -244,4 +244,10 @@ class ArtController extends Controller
             return response()->json(["message" => "No Results for Query", "success" => true, "data" => []]);
         }
     }
+
+    public function searchartist(Request $request){
+
+        $q = $request->get('q');
+        
+    }
 }
