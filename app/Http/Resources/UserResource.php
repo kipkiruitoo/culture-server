@@ -37,7 +37,7 @@ class UserResource extends JsonResource
             Auth::user()->isFollowing($user);
 
         // check if followed by this user
-        $followed = Auth::user()->isFollowdBy($user);
+        $followed = Auth::user()->isFollowedBy($user);
 
         return [
             'id' => $this->id,
