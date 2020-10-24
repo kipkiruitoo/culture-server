@@ -14,6 +14,7 @@ use App\Models\Category;
 use App\Models\SubCategory;
 use App\Models\User;
 use Auth;
+use Illuminate\Support\Facades\Log;
 
 class ArtController extends Controller
 {
@@ -76,6 +77,8 @@ class ArtController extends Controller
 
 
         $art = new Art();
+
+        Log::info($request);
 
         // handle file uploads
         $img = $request->file('image');
