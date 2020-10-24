@@ -121,9 +121,9 @@ class UserController extends Controller
         }
     }
 
-    public function getFollowers(User $user)
+    public function getFollowers($user)
     {
-        // $user = $request->user();
+        $user = User::find($user);
 
         $followers = $user->followers;
 
