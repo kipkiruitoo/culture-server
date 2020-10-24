@@ -229,4 +229,19 @@ class ArtController extends Controller
 
         return response()->json(["message" => "Sub Categories Retrieved Successfully", "success" => true, "data" => SubCategoryResource::collection($subs)]);
     }
+
+
+    public function searchart(Request $request)
+    {
+        $q = $request->get('q');
+        Log::alert($q);
+
+        $art = Art::where('title', 'LIKE', '%' . $q . '%')->orWhere('description', 'LIKE', '%' . $q . '%')->get();
+
+        if (count($art) > 0) {
+            return response()->json(["message" => "Search Results for Query etrieved SuccessfullyR", "success" => true, "data" => SingleArt::collection($art)]);
+        } else {
+            return response()->json(["message" => "No Results for Query", "success" => true, "data" => []]);
+        }
+    }
 }

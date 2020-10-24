@@ -28,6 +28,10 @@ Route::get('/logout', [UserController::class, 'logout'])->middleware('auth:sanct
 
 Route::get('/art', [ArtController::class, 'index'])->middleware('auth:sanctum');
 
+Route::get("/search/art", [ArtController::class, 'searchart'])->middleware('auth:sanctum');
+
+Route::get("/search/artist", [ArtController::class, 'searchartist'])->middleware('auth:sanctum');
+
 Route::get('/art/{id}/user', [ArtController::class, 'userart'])->middleware('auth:sanctum');
 
 // art of logged in user
