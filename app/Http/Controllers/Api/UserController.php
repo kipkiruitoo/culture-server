@@ -39,7 +39,7 @@ class UserController extends Controller
         return response()->json([
             'success' => true,
             'token' => $user->createToken($request->device_name)->plainTextToken,
-            'user' => new UserResource($user)
+            'user' =>  $user
         ]);
     }
     public function register(Request $request)
