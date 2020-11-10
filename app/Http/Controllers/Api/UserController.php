@@ -64,7 +64,7 @@ class UserController extends Controller
         return response()->json([
             'success' => true,
             'token' => $success,
-            'user' => new UserResource($user)
+            'user' => $user
         ]);
     }
 
@@ -92,6 +92,13 @@ class UserController extends Controller
                 'message' => 'Unable to Logout'
             ]);
         }
+    }
+
+    public function show($user)
+    {
+        $artist = User::find($user);
+
+        return response()->json(["message" => "Successfully retrieved user info", "success" => true, "data" => new UserResource($artist)]);
     }
 
     public function follow(Request $request)

@@ -34,6 +34,9 @@ Route::get("/search/artist", [ArtController::class, 'searchartist'])->middleware
 
 Route::get('/art/{id}/user', [ArtController::class, 'userart'])->middleware('auth:sanctum');
 
+
+// Route::get()
+
 // art of logged in user
 
 Route::get('/user/art', [UserController::class, 'art'])->middleware('auth:sanctum');
