@@ -18,7 +18,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return new UserResource($request->user());
+    return
+        response()->json([
+            'success' => true,
+            'user' => new UserResource($request->user)
+        ]);
 });
 
 // Auth Routes
