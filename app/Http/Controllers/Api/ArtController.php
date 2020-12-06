@@ -13,6 +13,7 @@ use App\Models\Art;
 use App\Models\Category;
 use App\Models\SubCategory;
 use App\Models\User;
+use Illuminate\Support\Str;
 use Auth;
 use Illuminate\Support\Facades\Log;
 
@@ -83,7 +84,7 @@ class ArtController extends Controller
         // handle file uploads
         $img = $request->file('image');
 
-        $path = $img->storeAs('art',  $img->getClientOriginalName() . '.' . $img->getClientOriginalExtension(),  'public');
+        $path = $img->storeAs('art',  Str::random(10) . '.' . $img->getClientOriginalExtension(),  'public');
 
         if ($request->is3d) {
             $art->is3d = 1;
