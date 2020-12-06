@@ -85,6 +85,10 @@ class ArtController extends Controller
 
         $path = $img->store('art', 'public');
 
+        if ($request->is3d) {
+            $art->is3d = 1;
+        }
+
         $art->title = $request->title;
         $art->description = $request->description;
         $art->location = $request->location;
@@ -245,9 +249,9 @@ class ArtController extends Controller
         }
     }
 
-    public function searchartist(Request $request){
+    public function searchartist(Request $request)
+    {
 
         $q = $request->get('q');
-        
     }
 }
