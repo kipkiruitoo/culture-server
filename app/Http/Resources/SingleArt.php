@@ -37,6 +37,7 @@ class SingleArt extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
+            'is3d' => $this->is3d,
             'description' => $this->description,
             'location' => $this->location,
             'like_count' => $this->like_count,
