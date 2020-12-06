@@ -83,7 +83,7 @@ class ArtController extends Controller
         // handle file uploads
         $img = $request->file('image');
 
-        $path = $img->store('art', 'public');
+        $path = $img->storeAs('art',  $img->getClientOriginalName() . '.' . $request->file('filename')->getClientOriginalExtension(),  'public');
 
         if ($request->is3d) {
             $art->is3d = 1;
