@@ -27,6 +27,13 @@ class SingleArt extends JsonResource
 
         $latestLikers = Art::find($this->id)->latest_likers;
 
+
+        if ($this->is3d == 1) {
+            $is3d = true;
+        } else {
+            $is3d = false;
+        }
+
         // if (is_null($latestLikers)) {
         //     # code...
         //     $latestLikers = [];
@@ -37,7 +44,7 @@ class SingleArt extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
-            'is3d' => $this->is3d,
+            'is3d' => $is3d,
             'description' => $this->description,
             'location' => $this->location,
             'like_count' => $this->like_count,
