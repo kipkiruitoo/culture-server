@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\ArtController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Resources\UserResource;
+use App\Http\Controllers\ForgotPasswordController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
