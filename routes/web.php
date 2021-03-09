@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,5 +27,6 @@ Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
 
+Route::get('profile', [UserController::class, 'profile'])->name('profile');
 
 Route::view('forgot_password', 'auth.reset_password')->name('password.reset');

@@ -146,4 +146,35 @@ class UserController extends Controller
 
         return response()->json(["message" => "Followings Retrieved Successfully", 'success' => true, "data" =>  UserResource::collection($followings)]);
     }
+
+    public function profile(Request $request)
+    {
+        if ($request->has('token')) {
+            $token = $request->token;
+
+            // check if user exists with that token
+
+            $ex = User::whereHas('tokens', function ($query) use (&$token) {
+                $query->where('token', $token);
+            })->exists();
+
+            // dd($ex);
+            if ($ex) {
+                $user = User::whereHas('tokens', function ($query) use (&$token) {
+                    $query->where('token', $token);
+                })->first();
+
+                $user = Auth::login($user);
+
+                // dd(Auth::user());
+
+
+                return redirect()->route('profile.show');
+            } else {
+                echo "An error occured, please exit the app and come back";
+            }
+        } else {
+            echo "Authentication failed, please exit the app and come back";
+        }
+    }
 }

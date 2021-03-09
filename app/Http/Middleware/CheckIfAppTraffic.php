@@ -37,10 +37,11 @@ class CheckIfAppTraffic
 
 
                 return redirect()->route('profile.show');
-            } else {
+            }else{
                 return $next($request);
             }
         } else {
+
         }
     }
 }

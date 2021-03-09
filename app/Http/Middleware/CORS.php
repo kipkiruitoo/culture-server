@@ -26,7 +26,10 @@ class CORS extends Middleware
             'Access-Control-Allow-Origin' => $origin,
             'Access-Control-Allow-Methods' => 'GET, POST, DELETE, PUT, OPTIONS, HEAD, PATCH',
             'Access-Control-Allow-Headers' => 'Authorization,DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Set-Cookie',
-            'Access-Control-Allow-Credentials' => 'true'
+            'Access-Control-Allow-Credentials' => 'true',
+            'Cache-Control' => 'nocache, no-store, max-age=0, must-revalidate',
+            'Pragma', 'no-cache',
+            'Expires', 'Fri, 01 Jan 1990 00:00:00 GMT',
         ];
 
         if ($request->getMethod() == "OPTIONS") {
@@ -36,9 +39,9 @@ class CORS extends Middleware
 
         $response = $next($request);
 
-        foreach ($headers as $key => $value) {
-            $response->header($key, $value);
-        }
+        // foreach ($headers as $key => $value) {
+        //     $response->header($key, $value);
+        // }
         return $response;
     }
 }

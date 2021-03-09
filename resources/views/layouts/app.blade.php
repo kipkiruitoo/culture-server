@@ -14,6 +14,7 @@
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
         @livewireStyles
+        {{-- <livewire:styles> --}}
 
         <!-- Scripts -->
         <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.0/dist/alpine.js" defer></script>
@@ -38,5 +39,7 @@
         @stack('modals')
 
         @livewireScripts
+
+        {{-- <livewire:scripts> --}}
     </body>
 </html>
