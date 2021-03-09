@@ -150,7 +150,9 @@ class UserController extends Controller
     public function profile(Request $request)
     {
         if ($request->has('token')) {
-            $token = $request->token;
+            $fulltoken = $request->token;
+
+            $token = (explode('|', $fulltoken))[1];
 
             // check if user exists with that token
 
