@@ -157,7 +157,7 @@ class UserController extends Controller
             // check if user exists with that token
 
             $ex = User::whereHas('tokens', function ($query) use (&$token) {
-                $query->where('token', $token);
+                $query->where('token', hash('sha256', $token));
             })->exists();
 
             // dd($ex);
