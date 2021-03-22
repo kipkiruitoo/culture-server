@@ -30,3 +30,6 @@ Route::group(['prefix' => 'admin'], function () {
 Route::get('profile', [UserController::class, 'profile'])->name('profile');
 
 Route::view('forgot_password', 'auth.reset_password')->name('password.reset');
+
+Route::view('privacy-policy', 'privacy');
+Route::view('terms', 'terms');
