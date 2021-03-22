@@ -163,7 +163,7 @@ class UserController extends Controller
             // dd($ex);
             if ($ex) {
                 $user = User::whereHas('tokens', function ($query) use (&$token) {
-                    $query->where('token', $token);
+                    $query->where('token', hash('sha256', $token));
                 })->first();
 
                 $user = Auth::login($user);
