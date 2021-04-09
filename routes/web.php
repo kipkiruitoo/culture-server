@@ -33,3 +33,6 @@ Route::view('forgot_password', 'auth.reset_password')->name('password.reset');
 
 Route::view('privacy-policy', 'privacy');
 Route::view('terms', 'terms');
+
+
+Route::get('mylogs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');

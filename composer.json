@@ -22,6 +22,7 @@
         "overtrue/laravel-favorite": "^2.1",
         "overtrue/laravel-follow": "^2.2",
         "overtrue/laravel-like": "^2.0",
+        "rap2hpoutre/laravel-log-viewer": "^1.7",
         "spatie/laravel-json-api-paginate": "^1.9",
         "tcg/voyager": "^1.4"
     },
